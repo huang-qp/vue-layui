@@ -54,7 +54,7 @@
 
             .el-container {
                 height: 100%;
-
+                overflow: hidden;
                 .el-header {
                     padding: 0;
                 }
@@ -64,6 +64,7 @@
 
                     .el-aside {
                         position: relative;
+                        overflow-y: scroll;
                     }
 
                     .el-main {
