@@ -3,30 +3,17 @@
         <div class="homePageContent">
             <el-container>
                 <el-header>
-<!--                    <HeadNavigationIndex/>-->
-                    <el-menu
-                            :default-active="activeIndex2"
-                            class="el-menu-demo"
-                            mode="horizontal"
-                            @select="handleSelect"
-                            background-color="#545c64"
-                            text-color="#fff"
-                            active-text-color="#ffd04b">
-                        <el-menu-item index="1">处理中心</el-menu-item>
-                        <el-submenu index="2">
-                            <template slot="title">我的工作台</template>
-                            <el-menu-item index="2-1">选项1</el-menu-item>
-                            <el-menu-item index="2-2">选项2</el-menu-item>
-                            <el-menu-item index="2-3">选项3</el-menu-item>
-                            <el-submenu index="2-4">
-                                <template slot="title">选项4</template>
-                                <el-menu-item index="2-4-1">选项1</el-menu-item>
-                                <el-menu-item index="2-4-2">选项2</el-menu-item>
-                                <el-menu-item index="2-4-3">选项3</el-menu-item>
-                            </el-submenu>
-                        </el-submenu>
-                        <el-menu-item index="3" disabled>消息中心</el-menu-item>
-                        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+                        <el-menu
+                    :default-active="activeIndex2"
+                    class="el-menu-demo"
+                    mode="horizontal"
+                    @select="handleSelect"
+                    background-color="#545c64"
+                    text-color="#fff"
+                    active-text-color="#ffd04b"
+                    >
+                    <el-menu-item class="headNavigationLeft" index="0" disabled><h2>后台管理系统</h2></el-menu-item>
+                        <HeadNavigationIndex :routerArr=routerArr></HeadNavigationIndex>
                     </el-menu>
                 </el-header>
                 <el-container>
@@ -67,14 +54,14 @@
 
 <script>
 	//import someComponent from './someComponent'
-	// import HeadNavigationIndex from '@/components/HeadNavigation/HeadNavigationIndex.vue'//头部导航组件
+	import HeadNavigationIndex from '@/components/HeadNavigation/HeadNavigationIndex.vue'//头部导航组件
 	import SideVavigationIndex from '@/components/SideVavigation/SideVavigationIndex.vue'//侧边导航组件
 
 	export default {
 		name: "homePageIndex",
 		components: {
 			//someComponent
-			// HeadNavigationIndex,
+			HeadNavigationIndex,
 			SideVavigationIndex
 		},
 		
@@ -85,24 +72,24 @@
 				unfold: false,
 				routerArr: [
 					{
-						id: 1,
+						id: '1',
 						lable: '首页',
 						icon: 'el-icon-menu',
 						navigationLevel: 1
 					},
 					{
-						id: 2,
+						id: '2',
 						lable: '一级导航',
 						icon: 'el-icon-menu',
 						navigationLevel: 1,
 						children: [
 							{
-								id: 3,
+								id: '3',
 								lable: '二级导航',
 								icon: 'el-icon-menu',
 								children: [
 									{
-										id: 4,
+										id: '4',
 										lable: '三级导航',
 										icon: 'el-icon-menu'
 									}
@@ -131,7 +118,10 @@
 				this.isCollapse = false
 				this.fold = true
 				this.unfold = false
-			}
+			},
+            handleSelect(){
+
+            }
 		}
 	}
 </script>
@@ -149,6 +139,17 @@
 
                 .el-header {
                     padding: 0;
+                    .el-menu{
+                        .headNavigationLeft{
+                            line-height: 30px;
+                            width: 200px;
+                            cursor: default;
+
+                            h2 {
+                                text-align: center;
+                            }
+                        }
+                    }
                 }
 
                 .el-container {
