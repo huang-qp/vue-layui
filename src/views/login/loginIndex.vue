@@ -38,30 +38,32 @@
 			login() {
 				if (this.loginData.account === 'admin' && this.loginData.password === '123') {
 					alert('登陆成功')
-                    this.$router.push({path:'/homePageIndex'})
-				}else {
+					this.$router.push({path: '/homePageIndex'})
+				} else {
 					alert('账号密码错误')
-                }
+				}
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-    #loginIndex{
+    #loginIndex {
         height: 100%;
         background: url(~@/assets/picture/login.jpeg) no-repeat center center;
-        background-size:100% 100%;
-        background-attachment:fixed;
-        .loginContent{
+        background-size: 100% 100%;
+        background-attachment: fixed;
+
+        .loginContent {
             width: 25%;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             padding: 80px 80px 60px 30px;
-            background: rgba(0,0,0,0.3);
-            .loginBtn{
+            background: rgba(0, 0, 0, 0.3);
+
+            .loginBtn {
                 width: 100%;
             }
         }

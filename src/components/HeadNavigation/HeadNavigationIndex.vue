@@ -27,7 +27,8 @@
                     </el-submenu>
                 </el-submenu>
                 <el-menu-item class="headNavigationLeft" index="3" disabled>消息中心</el-menu-item>
-                <el-menu-item class="headNavigationLeft" index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+                <el-menu-item class="headNavigationLeft" index="4"><a href="https://www.ele.me" target="_blank">订单管理</a>
+                </el-menu-item>
             </el-menu>
         </div>
     </div>
@@ -46,7 +47,7 @@
 			return {
 				activeIndex: '1',
 				activeIndex2: '1',
-                searchValue:''
+				searchValue: ''
 			};
 		},
 		
@@ -60,24 +61,27 @@
 </script>
 
 <style lang='scss' scoped>
-    #HeadNavigationIndex{
-        .HeadNavigationContent{
-            .el-menu-demo.el-menu--horizontal.el-menu{
-                .headNavigationLeft{
+    #HeadNavigationIndex {
+        .HeadNavigationContent {
+            .el-menu-demo.el-menu--horizontal.el-menu {
+                .headNavigationLeft {
                     float: right;
                 }
-                .headNavigationRight{
+
+                .headNavigationRight {
                     line-height: 30px;
                     width: 200px;
                     cursor: default;
-                    h2{
+
+                    h2 {
                         text-align: center;
                     }
                 }
-                .headNavigationRightSearch{
-                        float: left;
-                        height: 60px;
-                        line-height: 60px;
+
+                .headNavigationRightSearch {
+                    float: left;
+                    height: 60px;
+                    line-height: 60px;
                 }
             }
         }

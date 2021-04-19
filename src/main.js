@@ -7,8 +7,9 @@ import router from '@/router/globalRouting.js'
 import ElementUI from 'element-ui'
 //全局引入element-ui样式
 import 'element-ui/lib/theme-chalk/index.css'
-// 引入less
-// import less from 'less'
+//开发环境下才会引入mockjs
+process.env.MOCK && require('@/mock/mockIndex.js')
+
 
 Vue.config.productionTip = false
 

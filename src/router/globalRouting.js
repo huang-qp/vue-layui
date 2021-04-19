@@ -4,16 +4,16 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 const router = new Router({
-	routes:[
+	routes: [
 		{ //重定向 登陆首页
-			path:'/',
-			name:'loginIndex',
-			component: ()=>import('@/views/login/loginIndex.vue')
+			path: '/',
+			name: 'loginIndex',
+			component: () => import('@/views/login/loginIndex.vue')
 		},
 		{ //首页
-			path:'/homePageIndex',
-			name:'homePageIndex',
-			component: ()=>import('@/views/homePage/homePageIndex.vue')
+			path: '/homePageIndex',
+			name: 'homePageIndex',
+			component: () => import('@/views/homePage/homePageIndex.vue')
 		},
 		// {
 		// 	path:'/index',
