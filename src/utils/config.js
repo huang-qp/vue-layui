@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 //用axios.create可以创建axios的实例，允许不同实例有不同配置
-const axios = axios.create({
+const reqFun = axios.create({
 	baseURL: 'http://localhost:8080',
 	// 请求超时的时间
 	timeout: 5000
@@ -14,4 +14,4 @@ const axios = axios.create({
 //     baseURL: 'http://www.test.com',
 //     timeout: 5000
 // });
-export default axios
+export default reqFun
