@@ -18,6 +18,7 @@
 
 <script>
 	//import someComponent from './someComponent'
+    import {login} from '@/api/loginInnterface'
 	export default {
 		name: "loginIndex",
 		component: {

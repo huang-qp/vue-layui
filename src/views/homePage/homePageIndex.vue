@@ -3,16 +3,16 @@
         <div class="homePageContent">
             <el-container>
                 <el-header>
-                        <el-menu
-                    :default-active="activeIndex2"
-                    class="el-menu-demo"
-                    mode="horizontal"
-                    @select="handleSelect"
-                    background-color="#545c64"
-                    text-color="#fff"
-                    active-text-color="#ffd04b"
+                    <el-menu
+                            :default-active="activeIndex2"
+                            class="el-menu-demo"
+                            mode="horizontal"
+                            @select="handleSelect"
+                            background-color="#545c64"
+                            text-color="#fff"
+                            active-text-color="#ffd04b"
                     >
-                    <el-menu-item class="headNavigationLeft" index="0" disabled><h2>后台管理系统</h2></el-menu-item>
+                        <el-menu-item class="headNavigationLeft" index="0" disabled><h2>后台管理系统</h2></el-menu-item>
                         <HeadNavigationIndex :routerArr=routerArr></HeadNavigationIndex>
                     </el-menu>
                 </el-header>
@@ -119,9 +119,9 @@
 				this.fold = true
 				this.unfold = false
 			},
-            handleSelect(){
+			handleSelect() {
 
-            }
+			}
 		}
 	}
 </script>
@@ -139,8 +139,9 @@
 
                 .el-header {
                     padding: 0;
-                    .el-menu{
-                        .headNavigationLeft{
+
+                    .el-menu {
+                        .headNavigationLeft {
                             line-height: 30px;
                             width: 200px;
                             cursor: default;

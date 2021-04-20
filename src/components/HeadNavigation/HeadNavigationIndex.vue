@@ -1,17 +1,19 @@
 <template>
     <div id="HeadNavigationIndex">
         <div class="HeadNavigationContent">
-                    <template v-for="item in routerArr">
-                    <el-menu-item :class="item.navigationLevel==1?'headNavigationRight':''" v-if="!(item.children)" :index =item.id :key = item.id>
-                            {{item.lable}}
-                    </el-menu-item>
-                    <el-submenu :class="item.navigationLevel==1?'headNavigationRight':''" v-if="item.children" :index =item.id :key = item.id>
-                        <template slot="title">
-                                {{item.lable}}
-                        </template>
-                        <HeadNavigationIndex :routerArr = item.children :mm = true></HeadNavigationIndex>
-                    </el-submenu>
-                </template>
+            <template v-for="item in routerArr">
+                <el-menu-item :class="item.navigationLevel==1?'headNavigationRight':''" v-if="!(item.children)"
+                              :index=item.id :key=item.id>
+                    {{item.lable}}
+                </el-menu-item>
+                <el-submenu :class="item.navigationLevel==1?'headNavigationRight':''" v-if="item.children"
+                            :index=item.id :key=item.id>
+                    <template slot="title">
+                        {{item.lable}}
+                    </template>
+                    <HeadNavigationIndex :routerArr=item.children :mm=true></HeadNavigationIndex>
+                </el-submenu>
+            </template>
         </div>
     </div>
     <!--<someComponent></someComponent>-->
@@ -21,7 +23,7 @@
 	//import someComponent from './someComponent'
 	export default {
 		name: "HeadNavigationIndex",
-        props: ['routerArr','mm'],
+		props: ['routerArr', 'mm'],
 		component: {
 			//someComponent
 		},
@@ -46,14 +48,15 @@
 <style lang='scss' scoped>
     #HeadNavigationIndex {
         .HeadNavigationContent {
-                .headNavigationRight {
-                    float: right;
-                }
-                .headNavigationRightSearch {
-                    float: left;
-                    height: 60px;
-                    line-height: 60px;
-                }
+            .headNavigationRight {
+                float: right;
+            }
+
+            .headNavigationRightSearch {
+                float: left;
+                height: 60px;
+                line-height: 60px;
+            }
         }
     }
 </style>
