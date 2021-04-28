@@ -9,7 +9,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 //开发环境下才会引入mockjs
 process.env.MOCK && require('@/mock/mockIndex.js')
-
+// 引入store
+import store from '@/store/storeIndex.js'
 
 Vue.config.productionTip = false
 
@@ -17,5 +18,6 @@ Vue.use(ElementUI)
 
 new Vue({
 	router,
+	store,
 	render: h => h(App),
 }).$mount('#app')

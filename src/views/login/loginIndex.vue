@@ -9,7 +9,7 @@
                     <el-input v-model="loginData.password" type="password"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button class="loginBtn" type="primary" @click="login()">登陆</el-button>
+                    <el-button class="loginBtn" type="primary" @click="loginSubmit">登陆</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -18,7 +18,8 @@
 
 <script>
 	//import someComponent from './someComponent'
-    import {login} from '../../api/loginInterface'
+	import {login} from '@/api/loginInterface'
+
 	export default {
 		name: "loginIndex",
 		component: {
@@ -36,13 +37,21 @@
 		
 		methods: {
 			//incident function（事件函数）
-			login() {
-                login({})
-				// if (this.loginData.account === 'admin' && this.loginData.password === '123') {
-					alert('登陆成功')
+			loginSubmit() {
+				login({
+					url: '/searchAuthors',
+                    data:this.loginData
+				}).then((res) => {
+					alert('登陆成功'+res)
+				}).catch((error) => {
+					console.log('登陆失败'+error)
 					this.$router.push({path: '/homePageIndex'})
+				})
+				// if (this.loginData.account === 'admin' && this.loginData.password === '123') {
+				// 	alert('登陆成功')
+				// 	this.$router.push({path: '/homePageIndex'})
 				// } else {
-					// alert('账号密码错误')
+				// alert('账号密码错误')
 				// }
 			}
 		}
