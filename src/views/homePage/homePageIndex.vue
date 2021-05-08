@@ -1,13 +1,13 @@
 <template>
     <div id="homePageIndex">
         <div class="homePageContent">
+<!--            头部导航栏-->
             <el-container>
                 <el-header>
                     <el-menu
-                            :default-active="activeIndex2"
                             class="el-menu-demo"
                             mode="horizontal"
-                            @select="handleSelect"
+                            @select="headerMenuSelect"
                             background-color="#545c64"
                             text-color="#fff"
                             active-text-color="#ffd04b"
@@ -16,33 +16,39 @@
                         <HeadNavigationIndex :routerArr=routerArr></HeadNavigationIndex>
                     </el-menu>
                 </el-header>
+<!--                侧边导航栏-->
                 <el-container>
                     <el-scrollbar>
                         <el-aside style="width:auto;">
-                            <el-menu default-active="1-4-1"
+                            <el-menu default-active="this.$router.path"
+                                     router
                                      class="el-menu-vertical-demo"
-                                     @open="handleOpen"
-                                     @close="handleClose"
+                                     @open="asideMenuOpen"
+                                     @close="asideMenuClose"
+                                     @select="asideMenuSelect"
                                      :collapse="isCollapse"
                                      background-color="#545c64"
                                      text-color="#fff"
                                      active-text-color="#ffd04b"
                             >
-                                <SideVavigationIndex :routerArr=routerArr></SideVavigationIndex>
+                                <SideNavigationIndex :routerArr=routerArr></SideNavigationIndex>
                             </el-menu>
                         </el-aside>
                     </el-scrollbar>
+<!--                    页面中间内容-->
                     <el-container>
                         <el-main>
-                            <div>
-                                <el-breadcrumb separator-class="el-icon-arrow-right">
-                                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                                    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-                                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-                                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-                                </el-breadcrumb>
-                            </div>
+<!--                            面包屑-->
+<!--                            <div>-->
+<!--                                <el-breadcrumb separator-class="el-icon-arrow-right">-->
+<!--                                    <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.id">{{item.lable}}-->
+<!--                                    </el-breadcrumb-item>-->
+<!--                                </el-breadcrumb>-->
+<!--                            </div>-->
+                            <BreadcrumbNavigationIndex :breadcrumbList = breadcrumbList></BreadcrumbNavigationIndex>
+                            <router-view></router-view>
                         </el-main>
+<!--                        底部内容-->
                         <el-footer>Footer</el-footer>
                     </el-container>
                 </el-container>
@@ -55,14 +61,17 @@
 <script>
 	//import someComponent from './someComponent'
 	import HeadNavigationIndex from '@/components/HeadNavigation/HeadNavigationIndex.vue'//头部导航组件
-	import SideVavigationIndex from '@/components/SideVavigation/SideVavigationIndex.vue'//侧边导航组件
+	import SideNavigationIndex from '@/components/SideNavigation/SideNavigationIndex.vue'//侧边导航组件
+	import BreadcrumbNavigationIndex from '@/components/BreadcrumbNavigation/BreadcrumbNavigationIndex.vue'//面包屑导航组件
+	// import store from '@/store/storeIndex'
 
 	export default {
 		name: "homePageIndex",
 		components: {
 			//someComponent
 			HeadNavigationIndex,
-			SideVavigationIndex
+			SideNavigationIndex,
+			BreadcrumbNavigationIndex
 		},
 		
 		data() {
@@ -75,7 +84,8 @@
 						id: '1',
 						lable: '首页',
 						icon: 'el-icon-menu',
-						navigationLevel: 1
+						navigationLevel: 1,
+						route:'/homePageIndex'
 					},
 					{
 						id: '2',
@@ -91,37 +101,91 @@
 									{
 										id: '4',
 										lable: '三级导航',
-										icon: 'el-icon-menu'
+										icon: 'el-icon-menu',
+                                        route:'/aaa'
 									}
 								]
 							}
 						]
 					}
-				]
+				],
+				routerArrAnalysis: [],//解析后的数组对象筛选菜单路径
+				breadcrumbList: [] //解析后的数组对象用于面包屑渲染使用
 			}
 		},
-		
+		created() {
+			this.getRouterArrAnalysis(this.routerArr)
+		},
 		methods: {
+			/**
+			 * 递归 多维数组对象转为一维数组对象
+			 * @param {Array} routerArr [要解析的多维数组对象]
+			 */
+			getRouterArrAnalysis(routerArr) {
+				routerArr.forEach(item => {
+					if (item.children) {
+						this.getRouterArrAnalysis(item.children)
+					}
+					this.routerArrAnalysis.push(item)
+				})
+			},
 			//incident function（事件函数）
-			handleOpen(key, keyPath) {
-				console.log(key, keyPath);
+			/**
+			 * 侧边导航栏点击展开的回调
+			 * @param {String} key [当前点击展开的菜单id]
+             * @param {Array} keyPath [当前菜单展开的路径菜单id]
+			 */
+			asideMenuOpen(key, keyPath) {
+				this.breadcrumbList = []
+				keyPath.forEach(item => {
+					this.routerArrAnalysis.forEach(it => {
+						if (item === it.id) {
+							this.breadcrumbList.push(it)
+						}
+					})
+				})
 			},
-			handleClose(key, keyPath) {
-				console.log(key, keyPath);
+			/**
+			 * 侧边导航栏点击关闭的回调
+			 * @param {String} key [当前点击展开的菜单id]
+			 * @param {Array} keyPath [当前菜单展开的路径菜单id]
+			 */
+			asideMenuClose(key, keyPath) {
+				this.breadcrumbList = []
+				keyPath.forEach(item => {
+					this.routerArrAnalysis.forEach(it => {
+						if (item === it.id) {
+							this.breadcrumbList.push(it)
+						}
+					})
+				})
 			},
-			getFold() {
-				this.isCollapse = true
-				this.fold = false
-				this.unfold = true
+			/**
+			 * 侧边导航栏最后一级选中的回调
+			 * @param {String} key [当前点击选中的菜单id]
+			 * @param {Array} keyPath [当前菜单展开的路径菜单id]
+			 */
+			asideMenuSelect(key, keyPath) {
+				debugger
+				this.breadcrumbList = []
+				keyPath.forEach(item => {
+					this.routerArrAnalysis.forEach(it => {
+						if (item === it.id) {
+							this.breadcrumbList.push(it)
+						}
+					})
+				})
 			},
-			getUnfold() {
-				this.isCollapse = false
-				this.fold = true
-				this.unfold = false
+			/**
+			 * 头部导航栏最后一级选中的回调
+			 * @param {String} key [当前点击选中的菜单id]
+			 * @param {Array} keyPath [当前菜单展开的路径菜单id]
+			 */
+			headerMenuSelect(key, keyPath) {
+				console.log(key);
+				console.log(keyPath);
 			},
-			handleSelect() {
 
-			}
 		}
 	}
 </script>

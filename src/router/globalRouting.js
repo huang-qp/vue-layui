@@ -8,12 +8,20 @@ const router = new Router({
 		{ //重定向 登陆首页
 			path: '/',
 			name: 'loginIndex',
-			component: () => import('@/views/login/loginIndex.vue')
+			// component: () => import('@/views/login/loginIndex.vue')
+			component:resolve => require(['@/views/login/loginIndex.vue'],resolve)
 		},
 		{ //首页
 			path: '/homePageIndex',
 			name: 'homePageIndex',
-			component: () => import('@/views/homePage/homePageIndex.vue')
+			// component: () => import('@/views/homePage/homePageIndex.vue')
+			component:resolve => require(['@/views/homePage/homePageIndex.vue'],resolve),
+			children:[{
+				path: '/aaa',
+				name: 'aaa',
+				// component: () => import('@/views/login/loginIndex.vue')
+				component:resolve => require(['@/views/aaa/aaa.vue'],resolve)
+			}]
 		},
 		// {
 		// 	path:'/index',

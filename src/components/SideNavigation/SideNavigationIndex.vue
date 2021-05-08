@@ -1,17 +1,17 @@
 <template>
-    <div id='SideVavigationIndex'>
-        <div class='SideVavigationContent'>
+    <div id='SideNavigationIndex'>
+        <div class='SideNavigationContent'>
                 <template v-for="item in routerArr">
-                    <el-menu-item v-if="!(item.children)" :index =item.id :key = item.id>
+                    <el-menu-item v-if="!(item.children)" :index =item.route?item.route:item.id :key = item.id>
                         <i :class=item.icon></i>
                         <span slot="title">{{item.lable}}</span>
                     </el-menu-item>
-                    <el-submenu v-if="item.children" :index =item.id :key = item.id>
+                    <el-submenu v-if="item.children" :index =item.route?item.route:item.id :key = item.id>
                         <template slot="title">
                             <i :class=item.icon></i>
                             <span >{{item.lable}}</span>
                         </template>
-                        <SideVavigationIndex :routerArr = item.children></SideVavigationIndex>
+                        <SideNavigationIndex :routerArr = item.children></SideNavigationIndex>
                     </el-submenu>
                 </template>
         </div>
@@ -22,7 +22,7 @@
 <script>
 	//import someComponent from './someComponent'
 	export default {
-		name: "SideVavigationIndex",
+		name: "SideNavigationIndex",
 		props: ['routerArr'],
 		components: {
 			//someComponent
@@ -41,8 +41,8 @@
 </script>
 
 <style lang="scss" scoped>
-    #SideVavigationIndex {
-        .SideVavigationContent {
+    #SideNavigationIndex {
+        .SideNavigationContent {
 
         }
     }

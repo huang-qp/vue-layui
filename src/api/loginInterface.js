@@ -12,7 +12,7 @@ import { get } from '@/utils/http'
 // 		passwd:enterReference.password
 // 	})
 // }
-
+// 登陆
 export function login(enterReference) {
 	return get(enterReference.url,{
 		key:'00d91e8e0cca2b76f515926a36db68f5',
