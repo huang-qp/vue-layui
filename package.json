@@ -11,10 +11,15 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
+    "express": "^4.17.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^9.0.3",
     "vue": "^2.6.11",
-    "vue-router": "^3.5.1",
+    "vue-cookie": "^1.1.4",
+    "vue-cookies": "^1.7.4",
+    "vue-fragment": "^1.5.2",
+    "vue-router": "^3.5.2",
+    "vue-session": "^1.0.0",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
